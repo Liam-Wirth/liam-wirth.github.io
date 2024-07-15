@@ -4,9 +4,11 @@ import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
+    description: string;
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props.title;
+const { description } = Astro.props.description;
 import '../assets/global.css'
 ---
 
