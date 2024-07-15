@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import type { iconPaths } from './IconPaths';
+import '../assets/global.css'
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
@@ -17,10 +18,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 ];
 ---
 
-<nav class="relative z-50 mb-14">
+<nav class="relative z-50 mb-14" >
   <div class="flex justify-between gap-2.5 p-6">
-    <a href="/" class="flex items-center gap-2.5 no-underline text-gray-0">
-      <Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
+    <a href="/" class="flex items-center gap-2.5 no-underline bg-gradient-to-bl ">
+      <Icon icon="terminal-window" size="2.6em" gradient/>
       Liam Wirth
     </a>
     <menu-button>

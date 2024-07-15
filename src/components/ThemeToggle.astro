@@ -1,54 +1,41 @@
 ---
 import Icon from './Icon.astro';
 ---
-
+ <!-- 
+	<button>
+		<span class="sr-only">Dark theme</span>
+		<span class="icon light"><Icon icon="sun" /></span>
+		<span class="icon dark"><Icon icon="moon-stars" /></span>
+	</button>
+-->
 <theme-toggle>
-  <button
-    class="flex border-0 rounded-full p-0 bg-gray-999 shadow-inner cursor-pointer"
-    aria-pressed="false"
-  >
-    <span class="sr-only">Dark theme</span>
-    <span class="icon light relative flex p-2 w-8 h-8 text-lg text-accent-overlay">
-      <Icon icon="sun" />
-      <span class="absolute inset-0 bg-accent-regular rounded-full transition-transform"></span>
-    </span>
-    <span class="icon dark flex p-2 w-8 h-8 text-lg text-accent-text-over">
-      <Icon icon="moon-stars" />
-    </span>
-  </button>
+    <button id="theme-toggle" class="flex items-center justify-center rounded-full bg-gray-900 p-0 shadow-inner cursor-pointer transition-colors duration-300 ease-in-out w-16 h-8 relative" role="switch" aria-checked="true" onclick="toggleTheme()">
+        <span class="sr-only">Toggle Dark Theme</span>
+        <!-- Sun Icon -->
+        <span class="icon light absolute left-1 top-1 flex items-center justify-center w-6 h-6 text-yellow-400">
+            <Icon icon="sun" />
+        </span>
+        <!-- Moon Icon -->
+        <span class="icon dark absolute right-1 top-1 flex items-center justify-center w-6 h-6 text-blue-500">
+            <Icon icon="moon-stars" />
+        </span>
+        <!-- Slider -->
+        <span class="slider bg-white absolute left-1 top-1 w-6 h-6 rounded-full shadow transition-transform duration-300 ease-in-out"></span>
+    </button>
 </theme-toggle>
 
 <script is:inline>
-  class ThemeToggle extends HTMLElement {
-    constructor() {
-      super();
-
-      const button = this.querySelector('button')!;
-
-      /** Set the theme to dark/light mode. */
-      const setTheme = (dark) => {
-        document.documentElement.classList.toggle('theme-dark', dark);
-        button.setAttribute('aria-pressed', String(dark));
-        localStorage.setItem('theme-dark', String(dark));
-      };
-
-      // Toggle the theme when a user clicks the button.
-      button.addEventListener('click', () => setTheme(!this.isDark()));
-
-      // Initialize button state to reflect current theme.
-      setTheme(this.isDark());
+    function toggleTheme() {
+        const button = document.getElementById('theme-toggle');
+        const isDark = button.getAttribute('aria-checked') === 'true';
+        button.setAttribute('aria-checked', String(!isDark));
+        document.documentElement.classList.toggle('theme-dark', !isDark);
+        // Move the slider based on the theme
+        const slider = button.querySelector('.slider');
+        if (!isDark) {
+            slider.style.transform = 'translateX(120%)';
+        } else {
+            slider.style.transform = 'translateX(0)';
+        }
     }
-
-    isDark() {
-      return document.documentElement.classList.contains('theme-dark') || 
-             (localStorage.getItem('theme-dark') === 'true');
-    }
-  }
-  customElements.define('theme-toggle', ThemeToggle);
-
-  // Ensure the theme is set on page load based on local storage
-  document.addEventListener('DOMContentLoaded', () => {
-    const isDark = localStorage.getItem('theme-dark') === 'true';
-    document.documentElement.classList.toggle('theme-dark', isDark);
-  });
 </script>
