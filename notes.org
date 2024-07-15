@@ -1,0 +1,19 @@
+:PROPERTIES:
+:ID:       b79d371a-7c15-4254-9a69-9081a1831418
+:END:
+* Notes on me website
+tech stack as it stands right now:
+Astro
+Tailwind
+Typescript
+
+
+I like the bento boxes look from the astro themes pages:
+[[https://github.com/Ladvace/astro-bento-portfolio][[ Bento Box Type look]]
+
+other inspiration (seen in the dailies note for today)
+1. [[https://aakash-sharma.netlify.app/][Aakash]] I like the technologies page, but a bit too animated for me
+2. [[https://www.aarondunphy.com/][Aaron]] Simplicity, but maybe too much
+3. [[https://aashutosh.dev/work/][Aashutosh]] I like the github calendar
+4. [[https://www.aayushkurup.dev/about][Aayush]] I REALLY REALLY REALLY like his "about me" page, top notch
+5. https://www.medevs.xyz/
