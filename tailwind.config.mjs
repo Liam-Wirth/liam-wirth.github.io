@@ -17,8 +17,8 @@ export default {
           800: '#e3e6ee',
           900: '#f3f4f7',
           999: '#ffffff',
-          basis: '0, 0%, 100%',
-          999_40: 'hsla(var(--gray-basis), 0.4)',
+          "999_basis": '0, 0%, 100%',
+          999_40: 'hsla(var(--gray-999-basis), 0.4)',
         },
         accent: {
           light: '#c561f6',
