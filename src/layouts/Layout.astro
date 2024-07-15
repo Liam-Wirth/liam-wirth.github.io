@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import '../assets/style.css'
+import '../assets/global.css'
 ---
 
 <!doctype html>
@@ -24,7 +24,7 @@ import '../assets/style.css'
             href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
         <ViewTransitions />
 	</head>
-	<body class="bg-black text-white">
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50 transition-theme">
 		<slot />
 	</body>
 </html>

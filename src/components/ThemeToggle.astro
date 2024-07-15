@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+---
+
+<theme-toggle>
+  <button
+    class="flex border-0 rounded-full p-0 bg-gray-999 shadow-inner cursor-pointer"
+    aria-pressed="false"
+  >
+    <span class="sr-only">Dark theme</span>
+    <span class="icon light relative flex p-2 w-8 h-8 text-lg text-accent-overlay">
+      <Icon icon="sun" />
+      <span class="absolute inset-0 bg-accent-regular rounded-full transition-transform"></span>
+    </span>
+    <span class="icon dark flex p-2 w-8 h-8 text-lg text-accent-text-over">
+      <Icon icon="moon-stars" />
+    </span>
+  </button>
+</theme-toggle>
+
+<script is:inline>
+  class ThemeToggle extends HTMLElement {
+    constructor() {
+      super();
+
+      const button = this.querySelector('button')!;
+
+      /** Set the theme to dark/light mode. */
+      const setTheme = (dark) => {
+        document.documentElement.classList.toggle('theme-dark', dark);
+        button.setAttribute('aria-pressed', String(dark));
+        localStorage.setItem('theme-dark', String(dark));
+      };
+
+      // Toggle the theme when a user clicks the button.
+      button.addEventListener('click', () => setTheme(!this.isDark()));
+
+      // Initialize button state to reflect current theme.
+      setTheme(this.isDark());
+    }
+
+    isDark() {
+      return document.documentElement.classList.contains('theme-dark') || 
+             (localStorage.getItem('theme-dark') === 'true');
+    }
+  }
+  customElements.define('theme-toggle', ThemeToggle);
+
+  // Ensure the theme is set on page load based on local storage
+  document.addEventListener('DOMContentLoaded', () => {
+    const isDark = localStorage.getItem('theme-dark') === 'true';
+    document.documentElement.classList.toggle('theme-dark', isDark);
+  });
+</script>
