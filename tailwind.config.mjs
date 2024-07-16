@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+//TODO: Fix this, colors aren't working consistently between this file and the global.css file
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
