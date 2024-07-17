@@ -1,2 +1,17 @@
 ---
+import simpleIcons, { type SimpleIcon } from "simple-icons";
+interface Props {
+  text: string;
+  logo: SimpleIcon;
+}
 ---
+
+<div class="tag flex items-center gap-x-2">
+  <img
+    src={Astro.props.logo.path}
+    alt={Astro.props.text}
+    class="w-5 h-5"
+    style={{ fill: "#64748b" }}
+  />
+  <span>{Astro.props.text}</span>
+</div>
