@@ -1,32 +1,46 @@
-<!-- Stolen from the medevs.xyz -->
 ---
 import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
-	title: string;
-    description: string;
+  title: string;
+  description: string;
 }
 
 const { title } = Astro.props.title;
 const { description } = Astro.props.description;
-import '../assets/global.css'
+import '../assets/global.css';
 ---
 
-<!doctype html>
+<!-- Stolen from the medevs.xyz --><!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-        <!-- Boxicons -->
-            <link rel="stylesheet"
-            href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-        <ViewTransitions />
-	</head>
-<body class="transition-theme">
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Astro description"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+    <title>{title}</title>
+    <!-- Boxicons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <ViewTransitions />
+  </head>
+  <body class="transition-theme">
+    <slot />
+  </body>
 </html>

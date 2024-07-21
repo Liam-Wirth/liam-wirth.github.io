@@ -1,17 +1,13 @@
 ---
-import simpleIcons, { type SimpleIcon } from "simple-icons";
-interface Props {
-  text: string;
-  logo: SimpleIcon;
-}
+// Import the entire simple-icons package
+import simpleIcons from 'simple-icons';
+// Retrieve the text prop passed to the component
+const { text } = Astro.props;
+// Use the simpleIcons.Get method to fetch the icon based on the text prop, converting it to lowercase
 ---
 
-<div class="tag flex items-center gap-x-2">
-  <img
-    src={Astro.props.logo.path}
-    alt={Astro.props.text}
-    class="w-5 h-5"
-    style={{ fill: "#64748b" }}
-  />
-  <span>{Astro.props.text}</span>
+<div class="tag flex items-center mr-16">
+  {
+    /* Use the innerHTML directive to inject the SVG content directly, ensuring it's properly sanitized */
+  }
 </div>

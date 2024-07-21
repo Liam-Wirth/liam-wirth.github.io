@@ -1,35 +1,35 @@
 ---
-import { type SimpleIcon } from "simple-icons";
-import * as simpleIcons from "simple-icons/icons";
-import TechCard from "./TechCard.astro";
-import { getTextOfJSDocComment } from "typescript";
+import { type SimpleIcon } from 'simple-icons';
+import * as simpleIcons from 'simple-icons/icons';
+import TechCard from './TechCard.astro';
+import { getTextOfJSDocComment } from 'typescript';
 interface Tech {
   text: string;
   logo: SimpleIcon;
 }
 
 export const technologies: Tech[] = [
-  { text: "Rust", logo: simpleIcons.siRust },
-  { text: "Arch", logo: simpleIcons.siArchlinux },
-  { text: "Git", logo: simpleIcons.siGit },
-  { text: "Bash", logo: simpleIcons.siGnubash },
-  { text: "JavaScript", logo: simpleIcons.siJavascript },
-  { text: "TypeScript", logo: simpleIcons.siTypescript },
-  { text: "Astro", logo: simpleIcons.siAstro },
-  { text: "TailwindCSS", logo: simpleIcons.siTailwindcss },
-  { text: "Linux", logo: simpleIcons.siLinux },
-  { text: "Lua", logo: simpleIcons.siLua },
-  { text: "Neovim", logo: simpleIcons.siNeovim },
-  { text: "C", logo: simpleIcons.siC },
-  { text: "Latex", logo: simpleIcons.siLatex },
-  { text: "Emacs", logo: simpleIcons.siGnuemacs },
-  { text: "Python", logo: simpleIcons.siPython },
-  { text: "Markdown", logo: simpleIcons.siMarkdown },
-  { text: "Org Mode", logo: simpleIcons.siOrg },
-  { text: "Ruby", logo: simpleIcons.siRuby },
-  { text: "Premiere", logo: simpleIcons.siAdobepremierepro },
-  { text: "Photoshop", logo: simpleIcons.siAdobephotoshop },
-  { text: "LeetCode", logo: simpleIcons.siLeetcode },
+  { text: 'Rust', logo: simpleIcons.siRust },
+  { text: 'Arch', logo: simpleIcons.siArchlinux },
+  { text: 'Git', logo: simpleIcons.siGit },
+  { text: 'Bash', logo: simpleIcons.siGnubash },
+  { text: 'JavaScript', logo: simpleIcons.siJavascript },
+  { text: 'TypeScript', logo: simpleIcons.siTypescript },
+  { text: 'Astro', logo: simpleIcons.siAstro },
+  { text: 'TailwindCSS', logo: simpleIcons.siTailwindcss },
+  { text: 'Linux', logo: simpleIcons.siLinux },
+  { text: 'Lua', logo: simpleIcons.siLua },
+  { text: 'Neovim', logo: simpleIcons.siNeovim },
+  { text: 'C', logo: simpleIcons.siC },
+  { text: 'Latex', logo: simpleIcons.siLatex },
+  { text: 'Emacs', logo: simpleIcons.siGnuemacs },
+  { text: 'Python', logo: simpleIcons.siPython },
+  { text: 'Markdown', logo: simpleIcons.siMarkdown },
+  { text: 'Org Mode', logo: simpleIcons.siOrg },
+  { text: 'Ruby', logo: simpleIcons.siRuby },
+  { text: 'Premiere', logo: simpleIcons.siAdobepremierepro },
+  { text: 'Photoshop', logo: simpleIcons.siAdobephotoshop },
+  { text: 'LeetCode', logo: simpleIcons.siLeetcode },
 ];
 
 const shuffle = (arr: any) => [...arr].sort(() => 0.5 - Math.random());
@@ -42,10 +42,13 @@ const shuffle = (arr: any) => [...arr].sort(() => 0.5 - Math.random());
 <div class="overflow-x-hidden whitespace-nowrap cursor-pointer">
   <div class="tech-card inline-block">
     {
-      technologies.map((tech) => {
+      technologies.map(tech => {
         return (
           <div class="inline-block m-0">
-            <TechCard text={tech.text} logo={tech.logo} />
+            <TechCard
+              text={tech.text}
+              logo={tech.logo}
+            />
           </div>
         );
       })

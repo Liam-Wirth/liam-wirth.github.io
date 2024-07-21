@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* Light Theme */
-  /* Colors */
+    /* Colors */
     --color-gray-0: #090b11;
     --color-gray-50: #141925;
     --color-gray-100: #283044;
@@ -26,11 +26,28 @@
     --color-text: #090b11;
     --color-accent: #7611a6;
     --color-shadow: rgba(9, 11, 17, 0.1);
-    --gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 150%);
-    --gradient-accent: linear-gradient(150deg, var(--accent-light), var(--accent-regular), var(--accent-dark));
-    --gradient-accent-orange: linear-gradient(150deg, #ca7879, var(--accent-regular), var(--accent-dark));
-    --gradient-stroke: linear-gradient(180deg, var(--gray-900), var(--gray-700));
-
+    --gradient-subtle: linear-gradient(
+      150deg,
+      var(--gray-900) 19%,
+      var(--gray-999) 150%
+    );
+    --gradient-accent: linear-gradient(
+      150deg,
+      var(--accent-light),
+      var(--accent-regular),
+      var(--accent-dark)
+    );
+    --gradient-accent-orange: linear-gradient(
+      150deg,
+      #ca7879,
+      var(--accent-regular),
+      var(--accent-dark)
+    );
+    --gradient-stroke: linear-gradient(
+      180deg,
+      var(--gray-900),
+      var(--gray-700)
+    );
   }
 
   .theme-dark {
@@ -47,21 +64,20 @@
     --color-gray-900: #141925;
     --color-gray-999-basis: 225, 31%, 5%;
     --color-gray-999: #090b11;
-    
 
     --color-bg: #090b11;
     --color-bray-900: #090b11;
     --color-text: #f3f4f7;
     --color-accent: #c561f7;
-    --color-accent-regular: #c561f7; 
+    --color-accent-regular: #c561f7;
     --color-shadow: rgba(255, 255, 255, 0.1);
-    
-  --color-accent-light: #1c0056;
-	--color-accent-regular: #7611a6;
-	--color-accent-dark: #c561f6;
-	--color-accent-overlay: hsla(280, 89%, 67%, 0.33);
-	--color-accent-subtle-overlay: hsla(281, 81%, 36%, 0.33);
-	--color-accent-text-over: var(--gray-0);
+
+    --color-accent-light: #1c0056;
+    --color-accent-regular: #7611a6;
+    --color-accent-dark: #c561f6;
+    --color-accent-overlay: hsla(280, 89%, 67%, 0.33);
+    --color-accent-subtle-overlay: hsla(281, 81%, 36%, 0.33);
+    --color-accent-text-over: var(--gray-0);
   }
   body {
     background-color: var(--color-bg);
@@ -73,10 +89,9 @@
   }
   ul {
     background-color: var(--color-bray-900);
-  } 
+  }
 
   .shadow-custom {
     box-shadow: 0px 10px 15px var(--color-shadow);
   }
-
 }

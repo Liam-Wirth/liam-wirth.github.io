@@ -1,7 +1,8 @@
 ---
 import Icon from './Icon.astro';
 ---
- <!-- 
+
+<!-- 
 	<button>
 		<span class="sr-only">Dark theme</span>
 		<span class="icon light"><Icon icon="sun" /></span>
@@ -9,33 +10,46 @@ import Icon from './Icon.astro';
 	</button>
 -->
 <theme-toggle>
-    <button id="theme-toggle" class="flex items-center justify-center rounded-full bg-gray-900 p-0 shadow-inner cursor-pointer transition-colors duration-300 ease-in-out w-16 h-8 relative" role="switch" aria-checked="true" onclick="toggleTheme()">
-        <span class="sr-only">Toggle Dark Theme</span>
-        <!-- Sun Icon -->
-        <span class="icon light absolute left-1 top-1 flex items-center justify-center w-6 h-6 text-yellow-400">
-            <Icon icon="sun" />
-        </span>
-        <!-- Moon Icon -->
-        <span class="icon dark absolute right-1 top-1 flex items-center justify-center w-6 h-6 text-blue-500">
-            <Icon icon="moon-stars" />
-        </span>
-        <!-- Slider -->
-        <span class="slider bg-white absolute left-1 top-1 w-6 h-6 rounded-full shadow transition-transform duration-300 ease-in-out"></span>
-    </button>
+  <button
+    id="theme-toggle"
+    class="flex items-center justify-center rounded-full bg-gray-900 p-0 shadow-inner cursor-pointer transition-colors duration-300 ease-in-out w-16 h-8 relative"
+    role="switch"
+    aria-checked="true"
+    onclick="toggleTheme()"
+  >
+    <span class="sr-only">Toggle Dark Theme</span>
+    <!-- Sun Icon -->
+    <span
+      class="icon light absolute left-1 top-1 flex items-center justify-center w-6 h-6 text-yellow-400"
+    >
+      <Icon icon="sun" />
+    </span>
+    <!-- Moon Icon -->
+    <span
+      class="icon dark absolute right-1 top-1 flex items-center justify-center w-6 h-6 text-blue-500"
+    >
+      <Icon icon="moon-stars" />
+    </span>
+    <!-- Slider -->
+    <span
+      class="slider bg-white absolute left-1 top-1 w-6 h-6 rounded-full shadow transition-transform duration-300 ease-in-out"
+    >
+    </span>
+  </button>
 </theme-toggle>
 
 <script is:inline>
-    function toggleTheme() {
-        const button = document.getElementById('theme-toggle');
-        const isDark = button.getAttribute('aria-checked') === 'true';
-        button.setAttribute('aria-checked', String(!isDark));
-        document.documentElement.classList.toggle('theme-dark', !isDark);
-        // Move the slider based on the theme
-        const slider = button.querySelector('.slider');
-        if (!isDark) {
-            slider.style.transform = 'translateX(120%)';
-        } else {
-            slider.style.transform = 'translateX(0)';
-        }
+  function toggleTheme() {
+    const button = document.getElementById('theme-toggle');
+    const isDark = button.getAttribute('aria-checked') === 'true';
+    button.setAttribute('aria-checked', String(!isDark));
+    document.documentElement.classList.toggle('theme-dark', !isDark);
+    // Move the slider based on the theme
+    const slider = button.querySelector('.slider');
+    if (!isDark) {
+      slider.style.transform = 'translateX(120%)';
+    } else {
+      slider.style.transform = 'translateX(0)';
     }
+  }
 </script>
