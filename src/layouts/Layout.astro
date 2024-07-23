@@ -13,8 +13,8 @@ import '../assets/global.css';
 
 <!-- Stolen from the medevs.xyz -->
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="en" data-theme="light">
+  <head > <!-- TODO: set up some startup script or something that get's what the current user's system theme is, and set that there -->
     <meta charset="UTF-8" />
     <meta
       name="description"
@@ -41,7 +41,7 @@ import '../assets/global.css';
     />
     <ViewTransitions />
   </head>
-  <body class="transition-theme">
+  <body class="bg-gray-999">
     <slot />
   </body>
 </html>

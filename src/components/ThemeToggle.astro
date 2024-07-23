@@ -1,6 +1,5 @@
 ---
 import Icon from './Icon.astro';
-import '../assets/global.css';
 ---
 
 <!-- 
@@ -21,15 +20,15 @@ import '../assets/global.css';
     <span class="sr-only">Toggle Dark Theme</span>
     <!-- Sun Icon -->
     <span
-      class="icon light absolute left-1 top-1 flex items-center justify-center w-6 h-6 text-yellow-400"
+      class="icon dark absolute left-1 top-1 flex items-center justify-center w-6 h-6 text-blue-400"
     >
-      <Icon icon="sun" />
+      <Icon icon="moon-stars" />
     </span>
     <!-- Moon Icon -->
     <span
-      class="icon dark absolute right-1 top-1 flex items-center justify-center w-6 h-6 text-blue-500"
+      class="icon light absolute right-1 top-1 flex items-center justify-center w-6 h-6 text-yellow-400"
     >
-      <Icon icon="moon-stars" />
+      <Icon icon="sun" />
     </span>
     <!-- Slider -->
     <span
@@ -44,10 +43,7 @@ import '../assets/global.css';
     const button = document.getElementById('theme-toggle');
     const isDark = button.getAttribute('aria-checked') === 'true';
     button.setAttribute('aria-checked', String(!isDark));
-    document.documentElement.classList.toggle('theme-dark', !isDark);
-    document.getElementById('theme-toggle').classList.toggle('theme-dark', !isDark);
-    document.getElementById('menu-content').classList.toggle('theme-dark', !isDark);
-    console.log("Theme toggled to", !isDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', !isDark ? 'dark' : 'light');
     // Move the slider based on the theme
     const slider = button.querySelector('.slider');
     if (!isDark) {
