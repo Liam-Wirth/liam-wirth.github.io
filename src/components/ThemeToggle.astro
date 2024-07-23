@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import '../assets/global.css';
 ---
 
 <!-- 
@@ -44,6 +45,9 @@ import Icon from './Icon.astro';
     const isDark = button.getAttribute('aria-checked') === 'true';
     button.setAttribute('aria-checked', String(!isDark));
     document.documentElement.classList.toggle('theme-dark', !isDark);
+    document.getElementById('theme-toggle').classList.toggle('theme-dark', !isDark);
+    document.getElementById('menu-content').classList.toggle('theme-dark', !isDark);
+    console.log("Theme toggled to", !isDark ? 'dark' : 'light');
     // Move the slider based on the theme
     const slider = button.querySelector('.slider');
     if (!isDark) {

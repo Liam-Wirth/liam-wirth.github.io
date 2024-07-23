@@ -54,7 +54,7 @@ const iconLinks: {
     <menu-button>
       <template>
         <button
-          class="relative flex border-0 rounded-full p-2 text-2xl text-gray-300 bg-gradient-radial from-gray-900 via-gray-800 to-150% shadow-md"
+          class="menu-button"
           aria-expanded="false"
         >
           <span class="sr-only">Menu</span>
@@ -62,9 +62,9 @@ const iconLinks: {
         </button>
       </template>
     </menu-button>
-  </div>
+</div>
   <noscript>
-    <ul class="flex flex-col gap-4 p-8 bg-gray-900 border-b border-gray-500">
+    <ul class="nav-items">
       {
         textLinks.map(({ label, href }) => (
           <li>
@@ -109,8 +109,9 @@ const iconLinks: {
   <div
     id="menu-content"
     hidden
-    class="absolute inset-x-0"
+    class="absolute inset-x-0 bg-gray-800"
   >
+    <!-- This is where the contents of the menu are defined/declared -->
     <ul class="flex flex-col gap-4 p-8 bg-gray-900 border-b border-gray-800">
       {
         textLinks.map(({ label, href }) => (
@@ -150,13 +151,14 @@ const iconLinks: {
       </div>
 
       <div
-        class="flex items-center h-[calc(theme(fontSize.xl)+theme(padding.2))]"
+        class="flex items-center h-[calc(theme(fontSize.xl)+theme(padding.2)) bg-gray-900"
       >
         <ThemeToggle />
       </div>
     </div>
   </div>
 </nav>
+<!-- Menu Button Definition -->
 
 <script>
   class MenuButton extends HTMLElement {
@@ -174,6 +176,7 @@ const iconLinks: {
       menu.hidden = true;
       // Add "menu-content" class in JS to avoid covering content in non-JS browsers.
       menu.classList.add('menu-content');
+      menu.classList.add('bg-gray-900');
 
       /** Set whether the menu is currently expanded or collapsed. */
       const setExpanded = (expand: string) => {
@@ -197,3 +200,157 @@ const iconLinks: {
   }
   customElements.define('menu-button', MenuButton);
 </script>
+
+<style>
+  nav {
+    z-index: 9999;
+    position: relative;
+    font-family: var(--font-brand);
+    font-weight: 500;
+    margin-bottom: 3.5rem;
+  }
+
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .site-title {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    line-height: 1.1;
+    color: var(--gray-0);
+    text-decoration: none;
+  }
+
+  .menu-button {
+    position: relative;
+    display: flex;
+    border: 0;
+    border-radius: 999rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--gray-300);
+    background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .menu-button[aria-expanded='true'] {
+    color: var(--gray-0);
+    background: linear-gradient(180deg, var(--gray-600), transparent),
+      radial-gradient(var(--gray-900), var(--gray-800) 150%);
+  }
+
+  .menu-button[hidden] {
+    display: none;
+  }
+
+  .menu-button::before {
+    position: absolute;
+    inset: -1px;
+    content: '';
+    background: var(--gradient-stroke);
+    border-radius: 999rem;
+    z-index: -1;
+  }
+
+  .menu-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  .nav-items {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: var(--text-md);
+    line-height: 1.2;
+    list-style: none;
+    padding: 2rem;
+    background-color: var(--gray-999);
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .link {
+    display: inline-block;
+    color: var(--gray-300);
+    text-decoration: none;
+  }
+
+  .link.active {
+    color: var(--gray-0);
+  }
+
+  .menu-footer {
+    --icon-size: var(--text-xl);
+    --icon-padding: 0.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1.5rem 2rem 1.5rem 1.5rem;
+    background-color: var(--gray-999);
+    border-radius: 0 0 0.75rem 0.75rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    font-size: var(--icon-size);
+  }
+
+  .social {
+    display: flex;
+    padding: var(--icon-padding);
+    text-decoration: none;
+    color: var(--accent-dark);
+    transition: color var(--theme-transition);
+  }
+
+  .social:hover,
+  .social:focus {
+    color: var(--accent-text-over);
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    height: calc(var(--icon-size) + 2 * var(--icon-padding));
+  }
+
+  .link {
+    padding: 0.5rem 1rem;
+    border-radius: 999rem;
+    transition:
+      color var(--theme-transition),
+      background-color var(--theme-transition);
+  }
+
+  .link:hover,
+  .link:focus {
+    color: var(--gray-100);
+    background-color: var(--accent-subtle-overlay);
+  }
+
+  .link.active {
+    color: var(--accent-text-over);
+    background-color: var(--accent-regular);
+  }
+
+  .socials {
+    display: none;
+  }
+
+  @media (forced-colors: active) {
+    .link.active {
+      color: SelectedItem;
+    }
+  }
+</style>
