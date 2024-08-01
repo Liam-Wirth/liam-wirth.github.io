@@ -82,6 +82,7 @@ export default {
           'Open Sans',
           'Helvetica Neue',
           'sans-serif',
+          'jetbrains-mono',
         ],
         brand: ['Rubik', 'system-ui'],
       },
@@ -90,5 +91,11 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
+
+  daisyui: {
+    themes: ["light", "dark"],
+  }
 };

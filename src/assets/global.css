@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* TODO: Switch over and just use one of the nice looking DaisyUI custom themes (i'm gonna kill myself after all this work) */
 @layer base {
   /* Dark mode */
   @media (prefers-color-scheme: dark) {
@@ -331,4 +331,51 @@
       --theme-transition: 0.2s ease-in-out;
     }
   }
+}
+:root {
+  --animation-duration: 2s;
+  --animation-duration-hover: 140s;
+}
+
+@keyframes loop {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes loop-reverse {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+.animate-loop {
+  animation: loop var(--animation-duration) linear infinite;
+  transition: animation-duration 0.5s ease; /* Smooth transition on hover */
+}
+
+.animate-loop-reverse {
+  animation: loop-reverse var(--animation-duration) linear infinite;
+  transition: animation-duration 0.5s ease; /* Smooth transition on hover */
+}
+
+.tech-card:hover .animate-loop,
+.tech-card:hover .animate-loop-reverse {
+  animation-duration: var(--animation-duration-hover);
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0.1rem 0.2rem rgb(0 0 0 / 20%), 0 0.1rem 0.5rem rgb(0 0 0 / 30%), 0 0.2rem 1.5rem rgb(0 0 0 / 40%);
 }
