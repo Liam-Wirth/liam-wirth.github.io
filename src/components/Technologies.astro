@@ -4,6 +4,9 @@ import { type SimpleIcon } from 'simple-icons';
 import * as simpleIcons from 'simple-icons/icons';
 import TechCard from './TechCard.astro';
 import '../assets/global.css'
+//holy shid???
+// using an obscure data structure??? erm... EPIC
+import { CircularLinkedList } from "./CircularLinkedList";
 
 export interface Tech {
   text: string;
@@ -15,19 +18,20 @@ export const technologies: Tech[] = [
   { text: 'Arch', simple: simpleIcons.siArchlinux },
   { text: 'Git', simple: simpleIcons.siGit },
   { text: 'Bash', simple: simpleIcons.siGnubash },
-  { text: 'JavaScript', simple: simpleIcons.siJavascript },
-  { text: 'TypeScript', simple: simpleIcons.siTypescript },
+  { text: 'JS', simple: simpleIcons.siJavascript },
+  { text: 'TS', simple: simpleIcons.siTypescript },
   { text: 'Astro', simple: simpleIcons.siAstro },
-  { text: 'TailwindCSS', simple: simpleIcons.siTailwindcss },
+  { text: 'Tailwind', simple: simpleIcons.siTailwindcss },
   { text: 'Linux', simple: simpleIcons.siLinux },
   { text: 'Lua', simple: simpleIcons.siLua },
   { text: 'Neovim', simple: simpleIcons.siNeovim },
   { text: 'C', simple: simpleIcons.siC },
+  { text: 'C++', simple: simpleIcons.siCplusplus },
   { text: 'Latex', simple: simpleIcons.siLatex },
   { text: 'Emacs', simple: simpleIcons.siGnuemacs },
   { text: 'Python', simple: simpleIcons.siPython },
   { text: 'Markdown', simple: simpleIcons.siMarkdown },
-  { text: 'Org Mode', simple: simpleIcons.siOrg },
+  { text: 'Org', simple: simpleIcons.siOrg },
   { text: 'Ruby', simple: simpleIcons.siRuby },
   { text: 'Premiere', simple: simpleIcons.siAdobepremierepro },
   { text: 'Photoshop', simple: simpleIcons.siAdobephotoshop },
@@ -40,19 +44,31 @@ export const technologies: Tech[] = [
 
 const shuffle = (arr: Tech[]) => [...arr].sort(() => 0.5 - Math.random());
 const shuffledTechnologies = shuffle(technologies);
+export const list = new CircularLinkedList();
+shuffledTechnologies.forEach((tech, index) => {
+  list.add(tech);
+})
+
 ---
 
 <div class="w-full p-4 flex justify-center">
-  <h2 class="text-2xl font-bold mb-4">Tech I Know</h2>
+  <h2 class="text-2xl font-bold mb-4">Tech I Know and Use</h2>
 </div>
 
 
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
-  {shuffledTechnologies.map(tech => (
-    <TechCard tech={tech} />
-  ))}
-</div>
-
+  <div class="loop-slider">
+    <div class="inner" id="technologies-carousel">
+      
+      </div>
+  </div>
+<script>
+  import { list } from './Technologies.astro';
+  import {onMount} from 'astro/client';
+  onMount(() => {
+    const container = document.getElementById('technologies-carousel');
+    const list = list
+  }
+</script>
 
 <style>
 .text-outline {
@@ -72,5 +88,36 @@ const shuffledTechnologies = shuffle(technologies);
   font-size: inherit; /* Match the font size */
   font-weight: inherit; /* Match the font weight */
 }
+.loop-slider {
+  display: flex;
+  overflow: hidden; /* Ensure no overflow */
+  position: relative;
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.inner {
+  display: flex;
+  width: fit-content; /* Adjust width to fit content */
+  animation: loop linear infinite;
+  animation-duration: 30s; /* Adjust the duration as needed */
+  animation-timing-function: linear;
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.tech-card-container {
+  flex: 0 0 auto; /* Prevent flex items from shrinking or growing */
+  margin-right: 1rem; /* Adjust spacing between cards */
+  position: relative; /* Ensure positioning for hover effects */
+}
+
 
 </style>

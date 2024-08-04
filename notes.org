@@ -17,3 +17,8 @@ other inspiration (seen in the dailies note for today)
 3. [[https://aashutosh.dev/work/][Aashutosh]] I like the github calendar
 4. [[https://www.aayushkurup.dev/about][Aayush]] I REALLY REALLY REALLY like his "about me" page, top notch
 5. https://www.medevs.xyz/
+
+* Github Page:
+I want to eventually add a card on my work/projects tab that shows my github activity and stuff, look at how this app does that and maybe work towards cloning
+functionality?
+https://github.com/avgupta456/github-trends

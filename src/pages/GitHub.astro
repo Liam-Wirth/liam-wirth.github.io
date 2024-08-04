@@ -1,0 +1,30 @@
+---
+import { useState, useEffect } from 'react';
+
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<div id="github-stats" class={`${className} p-4 bg-gray-100 rounded-lg shadow`}>
+  <p class="text-lg font-semibold">GitHub Stats</p>
+  <p id="lines-of-code" class="text-3xl font-bold mt-2">Loading...</p>
+</div>
+
+<script>
+  import { calculateTotalLines } from '../utils/github';
+
+  async function updateStats() {
+    try {
+      const totalLines = await calculateTotalLines();
+      document.getElementById('lines-of-code').textContent = `${totalLines.toLocaleString()} lines of code`;
+    } catch (error) {
+      console.error('Error fetching GitHub stats:', error);
+      document.getElementById('lines-of-code').textContent = 'Error fetching stats';
+    }
+  }
+
+  updateStats();
+</script>
