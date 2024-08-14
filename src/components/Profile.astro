@@ -1,0 +1,31 @@
+---
+import Technologies from '../components/Technologies.astro';
+---
+
+<!--<div class="flex flex-grow flex-col justify-center items-center text-gray-50 bg-gray-999">--><!--<h1>This Site Is Under Construction!</h1>--><!--<h2><i>it's a side project</i></h2>--><!--<img--><!--src="png/sideproject.png"--><!--alt="Under Construction"--><!--/>--><!--</div>-->
+<div class="container mx-auto px-4 flex flex-col md:flex-row">
+  <div class="md:w-2/3 pr-4">
+    <h2 class="text-2xl font-bold mb-4 md:w-2/3">About Me</h2>
+    <p class="mb-4">
+      uhhh,,,, sooo uhhh I uhhhhhhhh, yeah uhhh. I'm uhhhh, like 20 something
+      and uhhhh sldkfjsldfkjsdflkjasdflkjasdf
+    </p>
+
+    <h3 class="text-xl font-bold mb-2">Tech I Use</h3>
+    <Technologies />
+  </div>
+  <div class="md:w-1/3 mt-4 md:mt-0 flex items-center justify-center">
+    <!--it would be cool to add some fun like hover effects and stuff to the pfp image I think-->
+    <img
+      src="png/sideproject.png"
+      alt="Profile Picture"
+      class="w-full rounded-lg shadow-lg justify-center"
+    />
+  </div>
+</div>
+
+<style>
+  .h1 {
+    font-size: 32rem;
+  }
+</style>

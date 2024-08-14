@@ -3,10 +3,10 @@
 import { type SimpleIcon } from 'simple-icons';
 import * as simpleIcons from 'simple-icons/icons';
 import TechCard from './TechCard.astro';
-import '../assets/global.css'
+import '../assets/global.css';
 //holy shid???
 // using an obscure data structure??? erm... EPIC
-import { CircularLinkedList } from "./CircularLinkedList";
+import { CircularLinkedList } from './CircularLinkedList';
 
 export interface Tech {
   text: string;
@@ -38,86 +38,82 @@ export const technologies: Tech[] = [
   { text: 'LeetCode', simple: simpleIcons.siLeetcode },
   { text: 'MakeFile', simple: simpleIcons.siMake },
   { text: 'MuseScore', simple: simpleIcons.siMusescore },
-  { text: 'Discord', simple: simpleIcons.siDiscord},
-  { text: 'SpotifyAPI', simple:simpleIcons.siSpotify}
+  { text: 'Discord', simple: simpleIcons.siDiscord },
+  { text: 'SpotifyAPI', simple: simpleIcons.siSpotify },
 ];
 
 const shuffle = (arr: Tech[]) => [...arr].sort(() => 0.5 - Math.random());
-const shuffledTechnologies = shuffle(technologies);
-export const list = new CircularLinkedList();
-shuffledTechnologies.forEach((tech, index) => {
-  list.add(tech);
-})
-
+export const row1 = technologies.slice(0, Math.ceil(technologies.length / 2));
+export const row2 = technologies.slice(Math.ceil(technologies.length / 2), technologies.length);
 ---
-
-<div class="w-full p-4 flex justify-center">
-  <h2 class="text-2xl font-bold mb-4">Tech I Know and Use</h2>
-</div>
-
-
-  <div class="loop-slider">
-    <div class="inner" id="technologies-carousel">
-      
+    <div class="loop-slider w-full overflow-hidden mb-4">
+      <div class="inner">
+        {row1.map((tech) => (
+          <div class="tech-card-container">
+            <TechCard tech={tech} />
+          </div>
+        ))}
+        {row1.map((tech) => (
+          <div class="tech-card-container">
+            <TechCard tech={tech} />
+          </div>
+        ))}
       </div>
+    </div>
+
+    <div class="loop-slider2 w-full overflow-hidden">
+      <div class="inner reverse">
+        {row2.map((tech) => (
+          <div class="tech-card-container">
+            <TechCard tech={tech} />
+          </div>
+        ))}
+        {row2.map((tech) => (
+          <div class="tech-card-container">
+            <TechCard tech={tech} />
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
-<script>
-  import { list } from './Technologies.astro';
-  import {onMount} from 'astro/client';
-  onMount(() => {
-    const container = document.getElementById('technologies-carousel');
-    const list = list
-  }
-</script>
+
 
 <style>
-.text-outline {
-  position: relative;
-  color: white; /* Text color */
-}
-
-.text-outline::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  color: black; /* Outline color */
-  opacity: 0.7; /* Optional: to adjust the outline intensity */
-  transform: translate(-1px, 1px); /* Adjust this to fine-tune the outline positioning */
-  font-size: inherit; /* Match the font size */
-  font-weight: inherit; /* Match the font weight */
-}
-.loop-slider {
-  display: flex;
-  overflow: hidden; /* Ensure no overflow */
-  position: relative;
-  width: 100%; /* Ensure full width */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
-
-.inner {
-  display: flex;
-  width: fit-content; /* Adjust width to fit content */
-  animation: loop linear infinite;
-  animation-duration: 30s; /* Adjust the duration as needed */
-  animation-timing-function: linear;
-}
-
-@keyframes loop {
-  0% {
-    transform: translateX(0);
+  .loop-slider, .loop-slider2 {
+    position: relative;
+    width: 70%;
+    height: 80px; /* Adjust based on your icon size */
   }
-  100% {
-    transform: translateX(-100%);
+
+  .inner {
+    display: flex;
+    position: absolute;
+    width: fit-content;
+    animation: loop 14s linear infinite;
   }
-}
 
-.tech-card-container {
-  flex: 0 0 auto; /* Prevent flex items from shrinking or growing */
-  margin-right: 1rem; /* Adjust spacing between cards */
-  position: relative; /* Ensure positioning for hover effects */
-}
+  .reverse {
+    animation-direction: reverse;
+  }
 
+  @keyframes loop {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 
+  .tech-card-container {
+    flex: 0 0 auto;
+    margin-right: 1rem;
+  }
+
+/* I don't want it to pause so abruptly if it does pause though */
+  .loop-slider:hover .inner,
+  .loop-slider2:hover .inner {
+    animation-play-state: paused;
+    transition-timing-function: ease-in-out;
+  }
 </style>

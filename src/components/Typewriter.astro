@@ -1,0 +1,42 @@
+---
+interface Props {
+  text: string;
+  delay?: number;
+}
+
+const { text, delay = 100 } = Astro.props;
+---
+
+<div class="typewriter">
+  <span id="typewriter-text"></span>
+  <span class="cursor">|</span>
+</div>
+
+<script define:vars={{ text, delay }}>
+  function typeWriter(text, i = 0) {
+    if (i < text.length) {
+      document.getElementById("typewriter-text").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(() => typeWriter(text, i), delay);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    typeWriter(text);
+  });
+</script>
+
+<style>
+  .typewriter {
+    font-family: monospace;
+    font-size: 1.5em;
+  }
+  .cursor {
+    animation: blink 0.7s infinite;
+  }
+  @keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>

@@ -22,3 +22,7 @@ other inspiration (seen in the dailies note for today)
 I want to eventually add a card on my work/projects tab that shows my github activity and stuff, look at how this app does that and maybe work towards cloning
 functionality?
 https://github.com/avgupta456/github-trends
+If I am going to clone the above website, ensure that I enable functionality in MY api that allows you to exclude repositories (for example, the antbot repo is adding like 10k lines of code to my total count)
+
+
+https://mateusf.com/ HOLY SHIIIIT
