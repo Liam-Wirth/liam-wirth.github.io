@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/boids/(.*)",   // Match requests to /boids/*
+      "destination": "https://boids.vercel.app/$1" // Forward them to the Boids project
+    }
+  ]
+}
+
