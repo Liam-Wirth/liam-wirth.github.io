@@ -1,0 +1,3 @@
+[submodule "projects/boids"]
+	path = projects/boids
+	url = https://github.com/liam-wirth/boids
